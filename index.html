@@ -15,6 +15,12 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+		
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+		
     </head>
 	
     <body id="page-top">
@@ -67,17 +73,55 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Geolocation Grid Items-->
-                <div class="row justify-content-center">
-                    <!-- Geolocation Item 1-->
-                    <div class="col-md-12 mb-5">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/cabin.png" alt="..." />
-                        </div>
-                    </div>
-                </div>
+                
+				<div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script>
+        var map_init = L.map('map', {
+            center: [50.06988997898041, 19.955011147403724],
+            zoom: 8
+        });
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map_init);
+        L.Control.geocoder().addTo(map_init);
+        if (!navigator.geolocation) {
+            console.log("Your browser doesn't support geolocation feature!")
+        } else {
+            setInterval(() => {
+                navigator.geolocation.getCurrentPosition(getPosition)
+            }, 5000);
+        };
+        var marker, circle, lat, long, accuracy;
+
+        function getPosition(position) {
+            // console.log(position)
+            lat = position.coords.latitude
+            long = position.coords.longitude
+            accuracy = position.coords.accuracy
+
+            if (marker) {
+                map_init.removeLayer(marker)
+            }
+
+            if (circle) {
+                map_init.removeLayer(circle)
+            }
+
+            marker = L.marker([lat, long])
+            circle = L.circle([lat, long], { radius: accuracy })
+
+            var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
+
+            map_init.fitBounds(featureGroup.getBounds())
+
+            console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy)
+        }
+    </script>
+				
             </div>
         </section>
 		
