@@ -1,6 +1,7 @@
 {
  "name": "Progressive Web App - Student's project",
  "short_name": "PWA",
+ "description": "My First PWA",
  "lang": "en",
  "start_url": "/",
  "background_color": "#1a252f",
