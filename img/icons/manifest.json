@@ -1,5 +1,11 @@
 {
- "name": "App",
+ "name": "Progressive Web App - Student's project",
+ "short_name": "PWA",
+ "lang": "en",
+ "start_url": "/",
+ "background_color": "#1a252f",
+ "theme_color": "#860038",
+ "display": "standalone",
  "icons": [
   {
    "src": "android-icon-36x36.png",
