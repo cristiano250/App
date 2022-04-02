@@ -1,11 +1,5 @@
 {
- "name": "My PWA Test",
- "short_name": "PWA Test",
- "lang": "en",
- "start_url": "/",
- "background_color": "#1a252f",
- "theme_color": "#860038",
- "display": "standalone",
+ "name": "App",
  "icons": [
   {
    "src": "android-icon-36x36.png",
