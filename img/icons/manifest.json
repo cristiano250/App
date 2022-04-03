@@ -3,7 +3,7 @@
  "short_name": "PWA",
  "description": "My First PWA",
  "lang": "en",
- "start_url": "cristiano250.github.io/App/",
+ "start_url": "https://cristiano250.github.io/App/",
  "background_color": "#1a252f",
  "theme_color": "#860038",
  "display": "standalone",
