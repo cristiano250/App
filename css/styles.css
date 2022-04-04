@@ -11353,6 +11353,11 @@ html {
   align-items: center;
 }
 
+#map {
+    width: 100%;
+    height: 500px;
+}
+
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
